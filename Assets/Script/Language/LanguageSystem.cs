@@ -93,6 +93,9 @@ public class LanguageSystem : MonoBehaviour {
         if (rowIndex <= 0) return "___INVALID INDEX___";
         list = list.ToLower();
 
+        if (_gameData.GetLength(1) <= (int)language) return "_ NO SE ENCUENTRA: " + language + " en GAME_";
+        if (_menuData.GetLength(1) <= (int)language) return "_ NO SE ENCUENTRA: " + language + " en MENU_";
+
         return list == "menu" && rowIndex <= _menuData.GetLength(0)
             ? _menuData[rowIndex - 1, (int)language]
             : _gameData[rowIndex - 1, (int)language];
