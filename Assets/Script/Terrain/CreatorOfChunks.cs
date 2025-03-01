@@ -76,6 +76,7 @@ public class CreatorOfChunks : MonoBehaviour {
         Vector3Int newPosition = new Vector3Int(x, y, z);
 
         GameObject chunk = Instantiate(chunkPrefab, newPosition, Quaternion.identity);
+        chunk.transform.SetParent(transform, false);
         
         MeshRenderer renderer = chunk.GetComponent<MeshRenderer>();
         renderer.material = listMaterial[numMaterial];

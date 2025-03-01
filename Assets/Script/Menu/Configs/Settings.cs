@@ -139,7 +139,7 @@ public class Settings : MonoBehaviour {
     private void ApplyConfig(SettingsJSON data)
     {
         LanguageSystem.ChangeLanguage(data.language);
-        _dropdownHUD.ChangeState(data.visibilityHUD);
+        if(_dropdownHUD != null) _dropdownHUD.ChangeState(data.visibilityHUD);
         _cam.fieldOfView = fovSlider.value; // FOV
 
         QualitySettings.vSyncCount = vsyncToggle ? 1 : 0; // VSYNC 

@@ -23,7 +23,7 @@ public class MineralGenerator : MonoBehaviour {
     {
         int mineralCount = 0;
 
-        for (int i = 0; i < mineral.maxPoint; i++)
+        for (int i = 0; i < mineral.countMaxToCreate; i++)
         {
             if (Random.Range(0, 100) >= mineral.probability)
                 continue;
@@ -35,6 +35,7 @@ public class MineralGenerator : MonoBehaviour {
             );
 
             GameObject min = Instantiate(mineral.mineral, spawnPos, Quaternion.identity);
+            min.transform.SetParent(transform, false);
             min.name = "Mineral-" + mineral.id;
             mineralCount++;
         }

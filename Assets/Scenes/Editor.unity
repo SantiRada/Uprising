@@ -14610,14 +14610,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 0d9d6d64a59b5f94d8b0934ac663e844, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  factionUI: {fileID: 1015841348}
-  titleFaction: {fileID: 1445261336}
   offsetY: 110
   detectionRange: 75
   nameFaction: 62
-  factionObj: []
-  planetObj: []
-  parent: {fileID: 42008917}
+  planetObj: {fileID: 0}
 --- !u!114 &750113304
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -16550,14 +16546,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 0d9d6d64a59b5f94d8b0934ac663e844, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  factionUI: {fileID: 1015841348}
-  titleFaction: {fileID: 1445261336}
   offsetY: 110
   detectionRange: 75
   nameFaction: 59
-  factionObj: []
-  planetObj: []
-  parent: {fileID: 42008917}
+  planetObj: {fileID: 0}
 --- !u!114 &873853535
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -16871,16 +16863,18 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   listMineral:
-  - {fileID: 11400000, guid: 83153226e792249458c082ff4b8be787, type: 2}
-  - {fileID: 11400000, guid: cfb7efba4ce5a1849bc0edfa01376b9f, type: 2}
-  - {fileID: 11400000, guid: 6607a7040b5d3fe43bf619d435f4a24f, type: 2}
-  - {fileID: 11400000, guid: db4850242cde8114bb7558199360dc87, type: 2}
-  - {fileID: 11400000, guid: 23d9461d7e501604e86c7179d41c08bd, type: 2}
-  - {fileID: 11400000, guid: 5bab39c3b50937f4abf518fcf85f547c, type: 2}
-  - {fileID: 11400000, guid: 55b414b842834e04eb87c5c4601027de, type: 2}
-  - {fileID: 11400000, guid: 7e4e6c6a7917029478417e72bf5bb23e, type: 2}
-  - {fileID: 11400000, guid: b1c74b13c81cab5419a9780233aa1de2, type: 2}
-  - {fileID: 11400000, guid: 18cd8f83f19f9c5428937de82163b987, type: 2}
+  - {fileID: 11400000, guid: b89fabd893b083a4da94a5bf4988f56c, type: 2}
+  - {fileID: 11400000, guid: 5290ab6658d812b4682e81af11b5e3e2, type: 2}
+  - {fileID: 11400000, guid: 27537ad081e002749a248e3b15bec1a8, type: 2}
+  - {fileID: 11400000, guid: af6148889ee74d34491eb02bf8b17880, type: 2}
+  - {fileID: 11400000, guid: c07cba3e81f23c946856d28d57601697, type: 2}
+  - {fileID: 11400000, guid: 5772b1412a064914abe9e9dd0e09a549, type: 2}
+  - {fileID: 11400000, guid: a8fff5929198d2b4c9460dd273e1cb3c, type: 2}
+  - {fileID: 11400000, guid: 33a231daef0dfb6409af41d65d629745, type: 2}
+  - {fileID: 11400000, guid: bbb0fc8bbbf1cec4eabb73b04a52d9b6, type: 2}
+  - {fileID: 11400000, guid: 7d802b99f4b83f645831f06e5e0ebc10, type: 2}
+  - {fileID: 11400000, guid: 4c5e37fcae15cdf4392510b8b0d20ee9, type: 2}
+  - {fileID: 11400000, guid: cd77398617000c6478a548ab04b2b949, type: 2}
   counterMineral: 00000000000000000000000000000000000000000000000000000000000000000000000000000000
 --- !u!1 &895197054
 GameObject:
@@ -22244,6 +22238,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _menuFile: {fileID: 4900000, guid: 3647b8230f4f4b04bb5584ad539205b9, type: 3}
   _gameFile: {fileID: 4900000, guid: 92deb100120596149ba9972e94d88026, type: 3}
+  _rogueFile: {fileID: 4900000, guid: cc914ae8ee89a1c4899bc725c30bfec9, type: 3}
   _delimiter: 47
 --- !u!4 &1140882181
 Transform:
@@ -30855,14 +30850,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 0d9d6d64a59b5f94d8b0934ac663e844, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  factionUI: {fileID: 1015841348}
-  titleFaction: {fileID: 1445261336}
   offsetY: 110
   detectionRange: 75
   nameFaction: 60
-  factionObj: []
-  planetObj: []
-  parent: {fileID: 42008917}
+  planetObj: {fileID: 0}
 --- !u!114 &1559093946
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -31947,14 +31938,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 0d9d6d64a59b5f94d8b0934ac663e844, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  factionUI: {fileID: 1015841348}
-  titleFaction: {fileID: 1445261336}
   offsetY: 110
   detectionRange: 75
   nameFaction: 61
-  factionObj: []
-  planetObj: []
-  parent: {fileID: 42008917}
+  planetObj: {fileID: 0}
 --- !u!114 &1649738169
 MonoBehaviour:
   m_ObjectHideFlags: 0

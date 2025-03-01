@@ -9,9 +9,10 @@ public class LanguageSystem : MonoBehaviour {
     [Header("Data CSV")]
     [SerializeField] private TextAsset _menuFile;
     [SerializeField] private TextAsset _gameFile;
+    [SerializeField] private TextAsset _rogueFile;
     [SerializeField] private char _delimiter = '/';
 
-    private static string[,] _menuData, _gameData;
+    private static string[,] _menuData, _gameData, _rogueData;
     public static Language language = Language.Spanish;
     public static event Action changeLanguage;
 
@@ -37,6 +38,7 @@ public class LanguageSystem : MonoBehaviour {
     {
         _gameData = ParseCSV(_gameFile);
         _menuData = ParseCSV(_menuFile);
+        _rogueData = ParseCSV(_rogueFile);
     }
     private string[,] ParseCSV(TextAsset file)
     {
@@ -93,12 +95,22 @@ public class LanguageSystem : MonoBehaviour {
         if (rowIndex <= 0) return "___INVALID INDEX___";
         list = list.ToLower();
 
-        if (_gameData.GetLength(1) <= (int)language) return "_ NO SE ENCUENTRA: " + language + " en GAME_";
-        if (_menuData.GetLength(1) <= (int)language) return "_ NO SE ENCUENTRA: " + language + " en MENU_";
+        /*
+        if (list == "game" && _gameData.GetLength(1) <= rowIndex) return "_ NO SE ENCUENTRA: " + rowIndex + " en GAME_";
+        if (list == "menu" && _menuData.GetLength(1) <= rowIndex) return "_ NO SE ENCUENTRA: " + rowIndex + " en MENU_";
+        if (list == "rogue" && _rogueData.GetLength(1) <= rowIndex) return "_ NO SE ENCUENTRA: " + rowIndex + " en ROGUE_";
+        */
 
-        return list == "menu" && rowIndex <= _menuData.GetLength(0)
-            ? _menuData[rowIndex - 1, (int)language]
-            : _gameData[rowIndex - 1, (int)language];
+        string value = "";
+
+        switch (list)
+        {
+            case "menu": value = _menuData[rowIndex - 1, (int)language]; break;
+            case "game": value = _gameData[rowIndex - 1, (int)language]; break;
+            case "rogue": value = _rogueData[rowIndex - 1, (int)language]; break;
+        }
+
+        return value;
     }
     public static void ChangeLanguage(int lang)
     {
@@ -114,7 +126,15 @@ public class LanguageSystem : MonoBehaviour {
     }
     public static int GetCountLanguage(string file)
     {
-        if (file == "menu") return _menuData.GetLength(1);
-        else return _gameData.GetLength(1);
+        int count = 0;
+
+        switch (file)
+        {
+            case "menu": count = _menuData.GetLength(1); break;
+            case "game": count = _gameData.GetLength(1); break;
+            case "rogue": count = _rogueData.GetLength(1); break;
+        }
+
+        return count;
     }
 }

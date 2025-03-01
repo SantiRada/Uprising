@@ -1,0 +1,19 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 970fae66a33f8a243ba20a5a797e1aa9, type: 3}
+  m_Name: Tejedores de la Luz
+  m_EditorClassIdentifier: 
+  namePlanet: 37
+  prefabPlanet: {fileID: 3413295843235113072, guid: 87a4b95c9fd22d641bc0cb6b505cf3d7, type: 3}
+  rarePlanet: 4
+  receiveMineral: {fileID: 11400000, guid: 6607a7040b5d3fe43bf619d435f4a24f, type: 2}
+  givesMineral: {fileID: 11400000, guid: 5bab39c3b50937f4abf518fcf85f547c, type: 2}
