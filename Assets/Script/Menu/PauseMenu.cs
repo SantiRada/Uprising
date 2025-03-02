@@ -1,13 +1,10 @@
 using UnityEngine;
 using System.Collections;
 
-public enum StatePlayer { UserInterface, Game, Pause };
-
 public class PauseMenu : MonoBehaviour {
 
     public GameObject pauseUI;
 
-    public static StatePlayer state;
     private InputPlayerSystem _inputs;
     private static PauseMenu instance;
     private MenuManager _menu;
@@ -26,7 +23,7 @@ public class PauseMenu : MonoBehaviour {
     }
     private void InitialValues()
     {
-        state = StatePlayer.Game;
+        MenuController.state = StatePlayer.Game;
         pauseUI.gameObject.SetActive(false);
     }
     private void OnDestroy()
@@ -37,22 +34,22 @@ public class PauseMenu : MonoBehaviour {
     }
     private void ReviewPause()
     {
-        if (state == StatePlayer.UserInterface) return;
+        if (MenuController.state == StatePlayer.UserInterface) return;
 
-        if (state == StatePlayer.Game) Pause();
-        else if (state == StatePlayer.Pause) Continue();
+        if (MenuController.state == StatePlayer.Game) Pause();
+        else if (MenuController.state == StatePlayer.Pause) Continue();
     }
     public void Continue()
     {
         pauseUI.gameObject.SetActive(false);
-        state = StatePlayer.Game;
+        MenuController.state = StatePlayer.Game;
     }
     public void Pause()
     {
         _menu.OpenSector(0);
 
         pauseUI.gameObject.SetActive(true);
-        state = StatePlayer.Pause;
+        MenuController.state = StatePlayer.Pause;
         
     }
     public void QuitGame()
@@ -61,19 +58,19 @@ public class PauseMenu : MonoBehaviour {
     }
     public static void SetState(StatePlayer newState)
     {
-        if (state == StatePlayer.UserInterface && instance != null && newState == StatePlayer.Game)
+        if (MenuController.state == StatePlayer.UserInterface && instance != null && newState == StatePlayer.Game)
         {
             instance.StartCoroutine(instance.SetStateWithDelay(newState));
         }
         else
         {
-            state = newState;
+            MenuController.state = newState;
         }
     }
     private IEnumerator SetStateWithDelay(StatePlayer newState)
     {
         yield return new WaitForSeconds(0.18f);
-        state = newState;
+        MenuController.state = newState;
 
         if(newState == StatePlayer.Game)
         {

@@ -6,12 +6,23 @@ public class GameManager : MonoBehaviour {
 
     public FPSLimit targetFPS = FPSLimit.Sixty;
     public TextMeshProUGUI fpsText;
+    public StatePlayer initialState;
 
     private float deltaTime = 0.0f;
 
     private void Start()
     {
         ApplyLimitFPS(-1);
+
+        LoadingScreen.finishLoading += InitialState;
+    }
+    private void OnDestroy()
+    {
+        LoadingScreen.finishLoading -= InitialState;
+    }
+    private void InitialState()
+    {
+        MenuController.state = initialState;
     }
     public void ApplyLimitFPS(int num)
     {

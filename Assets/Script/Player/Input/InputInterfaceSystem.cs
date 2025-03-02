@@ -48,21 +48,7 @@ public class InputInterfaceSystem : MonoBehaviour {
     public void LaunchChangeScheme()
     {
         changeScheme?.Invoke();
-
-        // if (PauseMenu.state == StatePlayer.Game || _input == null) return;
-
-        // if(_input.currentControlScheme == "Keyboard")
-        // {
-            // Cursor.visible = true;
-            // Cursor.lockState = CursorLockMode.Confined;
-        // }
-        // else
-        // {
-            // Cursor.visible = false;
-            // Cursor.lockState = CursorLockMode.Locked;
-        // }
     }
-    // INTERFACE
     public void OnMove(InputAction.CallbackContext context)
     {
         if (context.performed) useMove?.Invoke();

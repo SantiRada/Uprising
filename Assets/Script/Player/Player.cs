@@ -12,10 +12,8 @@ public class Player : MonoBehaviour {
     private Vector3 _initialPosition;
 
     [Header("Camera Movement")]
-    public float mouseSensitivity = 2f;
-    public float stickSensitivity = 2f;
+    public float sensitivity = 2f;
     public Transform cameraTransform;
-    public bool invertY = false;
 
     [Header("Jetpack")]
     [Tooltip("Fuerza del Jetpack")] public float flyForce = 5f;
@@ -62,7 +60,7 @@ public class Player : MonoBehaviour {
     private void Update()
     {
         if (!canMove) return;
-        if (PauseMenu.state == StatePlayer.Pause) return;
+        if (MenuController.state == StatePlayer.Pause) return;
 
         Move();
 
@@ -131,8 +129,8 @@ public class Player : MonoBehaviour {
         {
             Vector3 moveCam = _inputs.moveCamera;
 
-            float moveX = moveCam.x * stickSensitivity;
-            float moveY = moveCam.y * stickSensitivity * (invertY ? -1 : 1);
+            float moveX = moveCam.x * sensitivity;
+            float moveY = moveCam.y * sensitivity;
 
             rotationX -= moveY;
             rotationX = Mathf.Clamp(rotationX, -90f, 90f);
@@ -144,8 +142,8 @@ public class Player : MonoBehaviour {
         {
             Vector3 moveCam = new Vector3(Input.GetAxis("Mouse X"), Input.GetAxis("Mouse Y"), 0);
 
-            float moveX = moveCam.x * mouseSensitivity;
-            float moveY = moveCam.y * mouseSensitivity * (invertY ? -1 : 1);
+            float moveX = moveCam.x * sensitivity;
+            float moveY = moveCam.y * sensitivity;
 
             rotationX -= moveY;
             rotationX = Mathf.Clamp(rotationX, -90f, 90f);

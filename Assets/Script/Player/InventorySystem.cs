@@ -60,7 +60,7 @@ public class InventorySystem : MonoBehaviour {
     }
     private void ClicUser()
     {
-        if (PauseMenu.state == StatePlayer.Pause) return;
+        if (MenuController.state == StatePlayer.Pause) return;
 
         Ray ray = Camera.main.ScreenPointToRay(Input.mousePosition);
         RaycastHit hit;
@@ -75,7 +75,7 @@ public class InventorySystem : MonoBehaviour {
     }
     private void ChangeInventory()
     {
-        if (PauseMenu.state == StatePlayer.Pause) return;
+        if (MenuController.state == StatePlayer.Pause) return;
 
         if (!isOpenInventory)
         {

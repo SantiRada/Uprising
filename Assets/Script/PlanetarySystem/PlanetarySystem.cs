@@ -25,6 +25,7 @@ public class PlanetarySystem : MonoBehaviour {
     public PlanetScriptable[] legendaryPlanets;
     [Space]
     public List<PlanetScriptable> dataPlanets = new List<PlanetScriptable>();
+    private LoadMapFactions _mapFactions;
 
     private void Awake()
     {
@@ -34,7 +35,23 @@ public class PlanetarySystem : MonoBehaviour {
     {
         dataPlanets = CreatePlanets();
 
-        // ShowPlanets();
+        for (int i = 0; i < dataPlanets.Count; i++)
+        {
+            if (dataPlanets[i].receiveMineral == null)
+            {
+                dataPlanets[i].receiveMineral = FindMineralWithRarityOutsideOtherPlanets(Rareza.Comun, dataPlanets);
+            }
+
+            if (dataPlanets[i].givesMineral == null)
+            {
+                dataPlanets[i].givesMineral = FindMineralWithRarityOutsideOtherPlanets(Rareza.Comun, dataPlanets);
+            }
+        }
+
+        _mapFactions = FindAnyObjectByType<LoadMapFactions>();
+
+        _mapFactions._dataMinerals = dataMinerals;
+        _mapFactions._dataPlanets = dataPlanets;
     }
     ////////////////////////////////////////////////
     private List<Mineral> CreateMinerals()

@@ -6,7 +6,13 @@ EditorBuildSettings:
   serializedVersion: 2
   m_Scenes:
   - enabled: 1
-    path: Assets/Scenes/Editor.unity
+    path: Assets/Scenes/Menu.unity
+    guid: 0de4dce305d870b4082c45cf351f7845
+  - enabled: 1
+    path: Assets/Scenes/PlanetarySystem.unity
+    guid: fa98e0809d3ad1a45a27adeb0ad403fd
+  - enabled: 1
+    path: Assets/Scenes/Game.unity
     guid: 9fc0d4010bbf28b4594072e72b8655ab
   m_configObjects: {}
   m_UseUCBPForAssetBundles: 0

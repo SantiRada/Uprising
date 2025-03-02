@@ -14611,9 +14611,12 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   offsetY: 110
+  factionUI: {fileID: 0}
+  titleFaction: {fileID: 0}
   detectionRange: 75
   nameFaction: 62
   planetObj: {fileID: 0}
+  factionObj: {fileID: 0}
 --- !u!114 &750113304
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -16547,9 +16550,12 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   offsetY: 110
+  factionUI: {fileID: 0}
+  titleFaction: {fileID: 0}
   detectionRange: 75
   nameFaction: 59
   planetObj: {fileID: 0}
+  factionObj: {fileID: 0}
 --- !u!114 &873853535
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -21885,6 +21891,50 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1105748174}
   m_CullTransparentMesh: 1
+--- !u!1 &1107383906
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1107383908}
+  - component: {fileID: 1107383907}
+  m_Layer: 0
+  m_Name: SaveSystem
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!114 &1107383907
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1107383906}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 8430b3783ffd5d34a8295dc16a898779, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+--- !u!4 &1107383908
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1107383906}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 1123.3911, y: 547.4575, z: 4.65734}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &1121636806
 GameObject:
   m_ObjectHideFlags: 0
@@ -30851,9 +30901,12 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   offsetY: 110
+  factionUI: {fileID: 0}
+  titleFaction: {fileID: 0}
   detectionRange: 75
   nameFaction: 60
   planetObj: {fileID: 0}
+  factionObj: {fileID: 0}
 --- !u!114 &1559093946
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -31939,9 +31992,12 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   offsetY: 110
+  factionUI: {fileID: 0}
+  titleFaction: {fileID: 0}
   detectionRange: 75
   nameFaction: 61
   planetObj: {fileID: 0}
+  factionObj: {fileID: 0}
 --- !u!114 &1649738169
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -42109,3 +42165,4 @@ SceneRoots:
   - {fileID: 705482442}
   - {fileID: 1848433516}
   - {fileID: 1140882181}
+  - {fileID: 1107383908}

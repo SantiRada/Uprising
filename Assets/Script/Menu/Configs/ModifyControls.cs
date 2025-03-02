@@ -15,9 +15,13 @@ public class ModifyControls : MonoBehaviour {
     private float timerDelay;
     [HideInInspector] public bool inControls = false;
 
-    public PlayerInput _playerInput;
+    private PlayerInput _playerInput;
     private InputActionRebindingExtensions.RebindingOperation rebindingOperation;
 
+    private void Awake()
+    {
+        _playerInput = FindAnyObjectByType<PlayerInput>();
+    }
     private void Start()
     {
         LoadingScreen.finishLoading += InitialValues;

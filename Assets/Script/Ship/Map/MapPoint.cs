@@ -1,63 +1,43 @@
 using System.Collections;
-using TMPro;
 using UnityEngine;
 
 public class MapPoint : MonoBehaviour {
 
     [Header("Content UI")]
-    public float offsetY;
-    public GameObject factionUI;
-    public TextMeshProUGUI titleFaction;
+    public FactionUI factionUI;
     private bool _isOpen = false;
     private bool _isTraveling = false;
 
     [Header("Info Move")]
     public float detectionRange = 75f;
     
-    [Header("Faction Data")]
-    public int nameFaction;
-    public GameObject planetObj;
-    [HideInInspector] public GameObject factionObj;
-    private GameObject parentObj;
-
-    private MapPlayer _player;
     private RectTransform _thisTransform;
     private RectTransform _playerTransform;
     private InputInterfaceSystem _inputs;
 
-    private void Awake()
+    [Header("Planet")]
+    public int namePlanet;
+    public Mineral receivedMineral;
+    public Mineral giveMineral;
+
+    private void OnEnable()
     {
         _thisTransform = GetComponent<RectTransform>();
-        _player = FindAnyObjectByType<MapPlayer>();
-        _playerTransform = _player.GetComponent<RectTransform>();
-        parentObj = transform.parent.gameObject;
+        _playerTransform = FindAnyObjectByType<MapPlayer>().GetComponent<RectTransform>();
 
         _inputs = FindAnyObjectByType<InputInterfaceSystem>();
     }
     private void Start()
     {
-        #region ReconocimientoDeUI
-        factionUI = GameObject.Find("FactionUI");
-        TextMeshProUGUI[] texts = factionUI.GetComponentsInChildren<TextMeshProUGUI>();
-        for (int i = 0; i < texts.Length; i++)
-        {
-            if (texts[i].name == "TitleFaction")
-            {
-                titleFaction = texts[i];
-                break;
-            }
-        }
-        #endregion
+        factionUI = FindAnyObjectByType<FactionUI>();
 
         LoadingScreen.finishLoading += InitialValues;
         _inputs.useSelect += GoToFaction;
     }
     private void InitialValues()
     {
-        factionObj.gameObject.SetActive(false);
-
         _isOpen = false;
-        factionUI.SetActive(false);
+        factionUI.gameObject.SetActive(false);
     }
     private void OnDestroy()
     {
@@ -74,15 +54,17 @@ public class MapPoint : MonoBehaviour {
     }
     private void OpenUI()
     {
+        StartCoroutine("OpenFactionUI");
+    }
+    private IEnumerator OpenFactionUI()
+    {
         _isOpen = true;
 
-        factionUI.SetActive(true);
-        factionUI.GetComponent<RectTransform>().SetAsLastSibling();
+        factionUI.gameObject.SetActive(true);
 
-        titleFaction.text = LanguageSystem.GetValue("rogue", nameFaction);
+        yield return null;
 
-        Vector3 newPosition = new Vector3(_thisTransform.position.x, _thisTransform.position.y + offsetY, _thisTransform.position.z);
-        factionUI.GetComponent<RectTransform>().SetPositionAndRotation(newPosition, Quaternion.identity);
+        factionUI.OpenUI(namePlanet, receivedMineral, giveMineral, _thisTransform);
     }
     private void CloseUI()
     {
@@ -90,7 +72,7 @@ public class MapPoint : MonoBehaviour {
 
         _isOpen = false;
 
-        factionUI.SetActive(false);
+        factionUI.gameObject.SetActive(false);
     }
     private void GoToFaction()
     {
@@ -99,14 +81,9 @@ public class MapPoint : MonoBehaviour {
     private IEnumerator TravelToFaction()
     {
         _isTraveling = true;
-        factionUI.SetActive(false);
+        factionUI.gameObject.SetActive(false);
 
         StartCoroutine(ChangeDistance(1.75f));
-
-        yield return new WaitForSeconds(1.2f);
-
-        planetObj.gameObject.SetActive(false);
-        factionObj.gameObject.SetActive(true);
 
         yield return new WaitForSeconds(1.2f);
 
@@ -118,17 +95,17 @@ public class MapPoint : MonoBehaviour {
     {
         Vector3 targetSize = new Vector3(target, target, target);
 
-        Vector2 startSize = new Vector2(parentObj.transform.localScale.x, parentObj.transform.localScale.y);
+        Vector2 startSize = new Vector2(transform.parent.transform.localScale.x, transform.parent.transform.localScale.y);
         float elapsedTime = 0f;
 
         while (elapsedTime < 1.5f)
         {
             Vector3 newSize = Vector3.Lerp(startSize, targetSize, elapsedTime / 1.5f);
-            parentObj.transform.localScale = newSize;
+            transform.parent.transform.localScale = newSize;
             elapsedTime += Time.deltaTime;
             yield return null;
         }
 
-        parentObj.transform.localScale = targetSize;
+        transform.parent.transform.localScale = targetSize;
     }
 }

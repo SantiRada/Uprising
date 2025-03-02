@@ -4,6 +4,10 @@ using UnityEngine.UI;
 
 public class LoadMapFactions : MonoBehaviour {
 
+    public List<Sprite> planetSprites = new List<Sprite>();
+    public float minSize;
+    public float maxSize;
+    [Space]
     public GameObject prefabFaction;
     public Sprite dottedLineSprite; // Imagen de línea punteada
     public float minDistance;
@@ -13,21 +17,19 @@ public class LoadMapFactions : MonoBehaviour {
     private List<LineRenderer> lines = new List<LineRenderer>();
 
     private Vector2 size;
-    private PlanetarySystem _planetary;
+    [HideInInspector] public List<PlanetScriptable> _dataPlanets = new List<PlanetScriptable>();
+    [HideInInspector] public List<Mineral> _dataMinerals = new List<Mineral>();
 
-    private void Awake()
-    {
-        _planetary = FindAnyObjectByType<PlanetarySystem>();
-    }
     private void Start()
     {
         size = GetComponent<RectTransform>().sizeDelta / 2;
+
         CreateFactionInMap();
         DrawDashedLines();
     }
     private void CreateFactionInMap()
     {
-        for (int i = 0; i < _planetary.dataPlanets.Count; i++)
+        for (int i = 0; i < _dataPlanets.Count; i++)
         {
             Vector3 newPosition = GetValidPosition();
 
@@ -36,10 +38,18 @@ public class LoadMapFactions : MonoBehaviour {
             newFaction.SetLocalPositionAndRotation(newPosition, Quaternion.identity);
 
             MapPoint point = newFaction.GetComponent<MapPoint>();
-            point.nameFaction = _planetary.dataPlanets[i].namePlanet;
+            point.namePlanet = _dataPlanets[i].namePlanet;
+            point.receivedMineral = _dataPlanets[i].receiveMineral;
+            point.giveMineral = _dataPlanets[i].givesMineral;
 
-            point.planetObj = _planetary.dataPlanets[i].prefabPlanet;
-            point.factionObj = _planetary.dataPlanets[i].prefabPlanet;
+            // Manejar tamaño randomizado
+            float value = Random.Range(minSize, maxSize);
+            point.transform.localScale = new Vector3(value, value, 1);
+
+            // Manejar Imagen del Planeta
+            int numPlanet = Random.Range(0, planetSprites.Count);
+            point.GetComponent<Image>().sprite = planetSprites[numPlanet];
+            planetSprites.RemoveAt(numPlanet);
         }
     }
     private Vector3 GetValidPosition()

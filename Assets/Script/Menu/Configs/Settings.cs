@@ -22,10 +22,7 @@ public class Settings : MonoBehaviour {
     public Slider musicSlider;
     public Slider sfxSlider;
     [Space]
-    public Slider sensibilityMouseSlider;
-    public Slider sensibilityStickSlider;
-    public Toggle invertToggle;
-    public Toggle vibrationToggle;
+    public Slider sensibility;
 
     [Header("Direction")]
     public string savePath;
@@ -37,18 +34,21 @@ public class Settings : MonoBehaviour {
 
     private GameManager _manager;
     private Camera _cam;
-    private Player _player;
     private ResolutionComponent _resolution;
-    private ManagerHUD _dropdownHUD;
+    private MenuController _menuController;
     private InputInterfaceSystem _inputs;
+    private ManagerHUD _dropdownHUD;
+    private Player _player;
 
     private void Awake()
     {
         _cam = FindAnyObjectByType<Camera>();
         _manager = GetComponent<GameManager>();
-        _player = FindAnyObjectByType<Player>();
-        _dropdownHUD = FindAnyObjectByType<ManagerHUD>();
         _resolution = FindAnyObjectByType<ResolutionComponent>();
+        _menuController = FindAnyObjectByType<MenuController>();
+
+        _dropdownHUD = FindAnyObjectByType<ManagerHUD>() ?? null;
+        _player = FindAnyObjectByType<Player>() ?? null;
 
         savePath = Application.persistentDataPath + "/settings_save.json";
     }
@@ -82,10 +82,7 @@ public class Settings : MonoBehaviour {
             masterVolume = (int)masterSlider.value,
             musicVolume = (int)musicSlider.value,
             sfxVolume = (int)sfxSlider.value,
-            sensibilityMouse = sensibilityMouseSlider.value,
-            sensibilityStick = sensibilityStickSlider.value,
-            invertY = invertToggle.isOn,
-            vibration = vibrationToggle.isOn
+            sensibility = sensibility.value,
         };
 
         return data;
@@ -115,10 +112,7 @@ public class Settings : MonoBehaviour {
         musicSlider.value = data.musicVolume;
         sfxSlider.value = data.sfxVolume;
 
-        sensibilityMouseSlider.value = data.sensibilityMouse;
-        sensibilityStickSlider.value = data.sensibilityStick;
-        invertToggle.isOn = data.invertY;
-        vibrationToggle.isOn = data.vibration;
+        sensibility.value = data.sensibility;
 
         StartCoroutine("ApplyVisuals");
 
@@ -149,9 +143,7 @@ public class Settings : MonoBehaviour {
         volumenMusic = data.musicVolume;
         volumenSFX = data.sfxVolume;
 
-        _player.mouseSensitivity = data.sensibilityMouse;
-        _player.stickSensitivity = data.sensibilityStick;
-        _player.invertY = data.invertY;
+        if(_player != null) _player.sensitivity = data.sensibility;
 
         ChangeConfigs?.Invoke();
     }
@@ -162,14 +154,16 @@ public class Settings : MonoBehaviour {
         switch (parent)
         {
             case "lang":
+                _menuController.ResetCategories();
+
                 LanguageSystem.ChangeLanguage(num);
                 LoadingScreen.RestartLoading();
                 break;
             case "hud":
-                _dropdownHUD.ChangeState(num);
+                if(_dropdownHUD != null) _dropdownHUD.ChangeState(num);
                 break;
             case "fps":
-                _manager.ApplyLimitFPS(num);
+                if(_manager != null) _manager.ApplyLimitFPS(num);
                 break;
             default: Debug.Log("No se reconoció el Input..."); break;
         }

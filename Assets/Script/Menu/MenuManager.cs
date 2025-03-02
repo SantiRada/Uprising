@@ -338,4 +338,8 @@ public class MenuManager : MonoBehaviour
         }
         return size;
     }
+    public void QuitGame()
+    {
+        Application.Quit();
+    }
 }

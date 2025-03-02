@@ -11,12 +11,6 @@ public class LoadingScreen : MonoBehaviour {
     public static event Action finishLoading;
     public static event Action isLoading;
 
-    private InputInterfaceSystem _inputs;
-
-    private void Awake()
-    {
-        _inputs = FindAnyObjectByType<InputInterfaceSystem>();
-    }
     private void Start()
     {
         isLoading += () => StartCoroutine("Loading");
@@ -29,6 +23,8 @@ public class LoadingScreen : MonoBehaviour {
     }
     private IEnumerator Loading()
     {
+        MenuController.state = StatePlayer.Pause;
+
         loadingScreen.gameObject.SetActive(true);
 
         yield return new WaitForSeconds(timeToLoading / 2);
@@ -39,9 +35,7 @@ public class LoadingScreen : MonoBehaviour {
 
         loadingScreen.gameObject.SetActive(false);
 
-        PauseMenu.SetState(StatePlayer.Game);
-
-        _inputs.ChangeActionMap(false);
+        MenuController.state = StatePlayer.Game;
     }
     public static void RestartLoading() { isLoading?.Invoke(); }
 }

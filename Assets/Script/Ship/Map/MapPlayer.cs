@@ -17,7 +17,6 @@ public class MapPlayer : MonoBehaviour
         _character = GetComponent<RectTransform>();
         _mapRect = _character.parent.GetComponent<RectTransform>(); // Obtenemos el padre
     }
-
     private void Update()
     {
         _movement = _inputs.movement.normalized;
@@ -39,7 +38,6 @@ public class MapPlayer : MonoBehaviour
             _character.rotation = Quaternion.Euler(0, 0, angle - 90);
         }
     }
-
     private Vector2 ClampToParentBounds(Vector2 position)
     {
         // Tamaño del mapa

@@ -63,7 +63,7 @@ public class InteractSystem : MonoBehaviour {
     }
     private void Update()
     {
-        if (PauseMenu.state == StatePlayer.Pause) return;
+        if (MenuController.state == StatePlayer.Pause) return;
 
         if (Vector3.Distance(_player.transform.position, transform.position) < spaceDetection)
         {

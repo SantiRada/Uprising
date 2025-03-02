@@ -48,7 +48,7 @@ public class MoveInUI : MonoBehaviour {
     {
         if (_isOpen) return;
 
-        PauseMenu.state = StatePlayer.UserInterface;
+        MenuController.state = StatePlayer.UserInterface;
         
         _isOpen = true;
 
@@ -64,7 +64,7 @@ public class MoveInUI : MonoBehaviour {
     {
         if (!_isOpen) return;
 
-        PauseMenu.state = StatePlayer.Game;
+        MenuController.state = StatePlayer.Game;
         _isOpen = false;
     }
 }

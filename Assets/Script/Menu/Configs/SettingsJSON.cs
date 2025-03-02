@@ -17,8 +17,5 @@ public class SettingsJSON
     public int musicVolume;
     public int sfxVolume;
 
-    public float sensibilityMouse;
-    public float sensibilityStick;
-    public bool invertY;
-    public bool vibration;
+    public float sensibility;
 }
